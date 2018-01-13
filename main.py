@@ -101,9 +101,7 @@ if __name__ == "__main__":
     parser.add_option("-c", "--credentials", dest="credentials", help="redmine password/credentials")
 
     (options, args) = parser.parse_args()
-
-    rmq = RabbitMQWrapper()
-
+    
     ra = RedmineAdapter(options)
     ra.connect()
     ra.serialize_issues()
