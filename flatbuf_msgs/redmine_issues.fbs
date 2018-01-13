@@ -1,0 +1,13 @@
+namespace RedmineIssues;
+
+table Issue {
+  title:string;
+  asignee:string;
+  percent_done:short;
+}
+
+table Issues {
+    issues:[Issue];
+}
+
+root_type Issues;
