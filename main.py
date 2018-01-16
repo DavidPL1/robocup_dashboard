@@ -1,6 +1,7 @@
 __author__ = 'Florian Lier | fl@techfak.uni-bielefeld.de'
 
 # DEFAULTS
+import time
 import pika
 import base64
 import flatbuffers
@@ -8,7 +9,6 @@ from sys import exit
 from threading import Lock
 from redminelib import Redmine
 from optparse import OptionParser
-
 
 # FLATBUF
 import RedmineIssues.Issue
@@ -104,6 +104,12 @@ if __name__ == "__main__":
     
     ra = RedmineAdapter(options)
     ra.connect()
-    ra.serialize_issues()
-    ra.print_issues()
-    ra.send_issues()
+
+    try:
+        while True:
+            ra.serialize_issues()
+            ra.print_issues()
+            ra.send_issues()
+            time.sleep(30)
+    except KeyboardInterrupt:
+        print ">> CTRL+C exiting ..."
