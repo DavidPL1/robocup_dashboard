@@ -80,11 +80,11 @@
         };
 
       // Stomp.js boilerplate
-      var client = Stomp.client('ws://localhost:15674/ws');
+      var client = Stomp.client('ws://localhost:61613/stomp');
       client.debug = pipe('#second');
 
       var print_first = pipe('#first', function(data) {
-          client.send('/topic/test', {"content-type":"text/plain"}, data);
+          client.send('/redmine_issues', {"content-type":"text/plain"}, data);
       });
 
       var on_connect = function(x) {
