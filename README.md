@@ -4,7 +4,9 @@
 
 Tested on Ubuntu 16.04
 
-Install rabbit-mq server as explained here: https://www.rabbitmq.com/install-debian.html
+<pre>
+sudo apt-get install rabbitmq-server
+</pre>
 
 Then:
 
