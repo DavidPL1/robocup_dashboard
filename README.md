@@ -25,7 +25,7 @@ git clone https://github.com/warp1337/redmine_dashboard.git
 
 <pre>
 sudo service rabbitmq-server start
-sudo /usr/lib/rabbitmq/bin/rabbitmq-plugins enable rabbitmq_web_stomp
+sudo /usr/lib/rabbitmq/bin/rabbitmq-plugins enable rabbitmq_web_stomp rabbitmq_management
 sudo service rabbitmq-server stop
 sudo service rabbitmq-server start
 /usr/lib/rabbitmq/bin/rabbitmq-plugins list
