@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html><head>
+<html>
+  <head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <title>RabbitMQ Web MQTT Example</title>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.2/sockjs.min.js"></script>
-  <script src="js/stomp.js"></script>
+  <script src="js/mqttws31.js" type="text/javascript"></script>
   <style>
       .box {
           width: 440px;
@@ -40,10 +42,10 @@
           font-size: 0.8em;
       }
   </style>
-  <title>RabbitMQ Web STOMP Examples : Echo Server</title>
   <link href="main.css" rel="stylesheet" type="text/css"/>
-</head><body lang="en">
-    <h1><a href="index.html">RabbitMQ Web STOMP Examples</a> > Echo Server</h1>
+  </head>
+  <body lang="en">
+    <h1>RabbitMQ Web MQTT Example</h1>
 
     <div id="first" class="box">
       <h2>Received</h2>
@@ -79,36 +81,54 @@
             return print;
         };
 
-      // Stomp.js boilerplate
-      if (location.search == '?ws') {
-          var ws = new WebSocket('ws://127.0.0.1:15674/ws');
-      } else {
-          var ws = new SockJS('http://127.0.0.1:15674/stomp');
-      }
+        var print_first = pipe('#first', function(data) {
+            message = new Paho.MQTT.Message(data);
+            message.destinationName = "/dashboard/issues";
+            debug("SEND ON " + message.destinationName + " PAYLOAD " + data);
+            client.send(message);
+        });
 
-      var client = Stomp.over(ws);
+        var debug = pipe('#second');
 
-      client.debug = pipe('#second');
+        var wsbroker = "127.0.0.1";  //mqtt websocket enabled broker
+        var wsport = 15675; // port for above
 
-      var print_first = pipe('#first', function(data) {
-          client.send('/topic/test', {"content-type":"text/plain"}, data);
-      });
-      var on_connect = function(x) {
-          id = client.subscribe("/topic/test", function(d) {
-               print_first(d.body);
-          });
-      };
-      var on_error =  function() {
-        console.log('error');
-      };
+        var client = new Paho.MQTT.Client(wsbroker, wsport, "/ws",
+            "myclientid_" + parseInt(Math.random() * 100, 10));
 
-      client.connect('guest', 'guest', on_connect, on_error, '/');
+        client.onConnectionLost = function (responseObject) {
+            debug("CONNECTION LOST - " + responseObject.errorMessage);
+        };
 
-      $('#first input').focus(function() {
-          if (!has_had_focus) {
-              has_had_focus = true;
-              $(this).val("");
-          }
-      });
+        client.onMessageArrived = function (message) {
+            debug("RECEIVE ON " + message.destinationName + " PAYLOAD " + message.payloadString);
+            print_first(message.payloadString);
+        };
+
+        var options = {
+            timeout: 3,
+            onSuccess: function () {
+                debug("CONNECTION SUCCESS");
+                client.subscribe('/dashboard/issues', {qos: 1});
+            },
+            onFailure: function (message) {
+                debug("CONNECTION FAILURE - " + message.errorMessage);
+            }
+        };
+
+        if (location.protocol == "https:") {
+            options.useSSL = true;
+        }
+
+        debug("CONNECT TO " + wsbroker + ":" + wsport);
+        client.connect(options);
+
+        $('#first input').focus(function() {
+            if (!has_had_focus) {
+                has_had_focus = true;
+                $(this).val("");
+            }
+        });
     </script>
-</body></html>
+  </body>
+</html>

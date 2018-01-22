@@ -85,12 +85,12 @@ class RabbitMQWrapper:
     def __init__(self):
         self.connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
         self.channel = self.connection.channel()
-        self.channel.exchange_declare(exchange='redmine_issues', exchange_type='topic')
+        self.channel.exchange_declare(exchange='dashboard.issues', exchange_type='topic')
         self.routing_key = "dashboard.issues"
 
     def publish(self, _message):
         encoded_m = base64.b64encode(_message)
-        self.channel.basic_publish(exchange='redmine_issues', routing_key=self.routing_key, body=encoded_m)
+        self.channel.basic_publish(exchange='dashboard.issues', routing_key=self.routing_key, body=encoded_m)
 
 
 if __name__ == "__main__":
@@ -106,6 +106,38 @@ if __name__ == "__main__":
     ra.connect()
 
     try:
+        import paho.mqtt.client as mqtt
+
+        # The callback for when the client receives a CONNACK response from the server.
+        def on_connect(client, userdata, flags, rc):
+            print("Connected with result code " + str(rc))
+
+            # Subscribing in on_connect() means that if we lose the connection and
+            # reconnect then subscriptions will be renewed.
+            # client.subscribe("$SYS/#")
+            client.subscribe('/dashboard/issues')
+            client.publish('/dashboard/issues', "something", 0, False)
+
+        # The callback for when a PUBLISH message is received from the server.
+        def on_message(client, userdata, msg):
+            print(msg.topic + " " + str(msg.payload))
+
+
+        client = mqtt.Client()
+        client.on_connect = on_connect
+        client.on_message = on_message
+
+        # client.connect('15.xx.xx.xx', 1883, 60)
+        # client.connect("iot.eclipse.org", 1883, 60)
+        client.connect("127.0.0.1", 1883, 60)
+
+        # client.publish('SEEDQ', 111, 0, False)
+
+        # Blocking call that processes network traffic, dispatches callbacks and
+        # handles reconnecting.
+        # Other loop*() functions are available that give a threaded interface and a
+        # manual interface.
+        client.loop_forever()
         while True:
             ra.serialize_issues()
             ra.print_issues()
