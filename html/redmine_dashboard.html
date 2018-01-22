@@ -1,7 +1,7 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE html>
 <html><head>
-  <meta charset="utf-8"/>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.2/sockjs.min.js"></script>
   <script src="js/stomp.js"></script>
   <style>
       .box {
@@ -41,9 +41,9 @@
       }
   </style>
   <title>RabbitMQ Web STOMP Examples : Echo Server</title>
-  <link href="css/main.css" rel="stylesheet" type="text/css"/>
+  <link href="main.css" rel="stylesheet" type="text/css"/>
 </head><body lang="en">
-    <h1><a href="index.html">RabbitMQ Web STOMP Example</a> > Echo Server</h1>
+    <h1><a href="index.html">RabbitMQ Web STOMP Examples</a> > Echo Server</h1>
 
     <div id="first" class="box">
       <h2>Received</h2>
@@ -80,19 +80,24 @@
         };
 
       // Stomp.js boilerplate
-      var client = Stomp.client('ws://localhost:61613/stomp');
+      if (location.search == '?ws') {
+          var ws = new WebSocket('ws://127.0.0.1:15674/ws');
+      } else {
+          var ws = new SockJS('http://127.0.0.1:15674/stomp');
+      }
+
+      var client = Stomp.over(ws);
+
       client.debug = pipe('#second');
 
       var print_first = pipe('#first', function(data) {
-          client.send('/redmine_issues', {"content-type":"text/plain"}, data);
+          client.send('/topic/test', {"content-type":"text/plain"}, data);
       });
-
       var on_connect = function(x) {
-          id = client.subscribe("/redmine_issues", function(d) {
+          id = client.subscribe("/topic/test", function(d) {
                print_first(d.body);
           });
       };
-
       var on_error =  function() {
         console.log('error');
       };
