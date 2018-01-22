@@ -139,9 +139,9 @@ if __name__ == "__main__":
         # manual interface.
         client.loop_forever()
         while True:
-            ra.serialize_issues()
-            ra.print_issues()
-            ra.send_issues()
+            # ra.serialize_issues()
+            # ra.print_issues()
+            # ra.send_issues()
             time.sleep(30)
     except KeyboardInterrupt:
         print ">> CTRL+C exiting ..."
