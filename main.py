@@ -86,7 +86,7 @@ class RabbitMQWrapper:
         self.connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
         self.channel = self.connection.channel()
         self.channel.exchange_declare(exchange='dashboard.issues', exchange_type='topic')
-        self.routing_key = "dashboard.issues"
+        self.routing_key = "dashboard.issues.now"
 
     def publish(self, _message):
         encoded_m = base64.b64encode(_message)
@@ -115,8 +115,8 @@ if __name__ == "__main__":
             # Subscribing in on_connect() means that if we lose the connection and
             # reconnect then subscriptions will be renewed.
             # client.subscribe("$SYS/#")
-            client.subscribe('/dashboard/issues')
-            client.publish('/dashboard/issues', "something", 0, False)
+            client.subscribe('dashboard.issues')
+            client.publish('dashboard.issues', "something", 0, False)
 
         # The callback for when a PUBLISH message is received from the server.
         def on_message(client, userdata, msg):

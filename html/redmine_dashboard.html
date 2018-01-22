@@ -83,7 +83,7 @@
 
         var print_first = pipe('#first', function(data) {
             message = new Paho.MQTT.Message(data);
-            message.destinationName = "/dashboard/issues";
+            message.destinationName = "dashboard.issues";
             debug("SEND ON " + message.destinationName + " PAYLOAD " + data);
             client.send(message);
         });
@@ -109,7 +109,7 @@
             timeout: 3,
             onSuccess: function () {
                 debug("CONNECTION SUCCESS");
-                client.subscribe('/dashboard/issues', {qos: 1});
+                client.subscribe('dashboard.issues', {qos: 1});
             },
             onFailure: function (message) {
                 debug("CONNECTION FAILURE - " + message.errorMessage);
