@@ -3,6 +3,7 @@ __author__ = 'Florian Lier | fl@techfak.uni-bielefeld.de'
 # DEFAULTS
 import time
 import pika
+import json
 import base64
 import flatbuffers
 from sys import exit
@@ -13,6 +14,9 @@ from optparse import OptionParser
 # FLATBUF
 import RedmineIssues.Issue
 import RedmineIssues.Issues
+
+# MQTT
+import paho.mqtt.client as mqtt
 
 
 class RedmineAdapter:
@@ -26,8 +30,9 @@ class RedmineAdapter:
         self.redmine_instance = None
         self.project_instance = None
         self.current_byte_buf = None
+        self.current_json_issues = None
         # RabbitMQ
-        self.rmq = RabbitMQWrapper()
+        self.mqttw = MQTTWrapper()
 
     def connect(self):
         try:
@@ -68,30 +73,68 @@ class RedmineAdapter:
         self.current_byte_buf = builder.Output()
         self.lock.release()
 
-    def print_issues(self):
+    def json_builder_issues(self, _filter="[task]"):
+        issues = []
+        for item in self.project_instance.issues:
+            try:
+                if _filter in str(item.subject).lower():
+                    single_issue = {"subject": str(item.subject)}
+                    if "assigned_to" in item:
+                        single_issue['assignee'] = str(item.assigned_to)
+                    else:
+                        single_issue['assignee'] = "Not Assigned"
+                        single_issue['done'] = str(item.done_ratio)
+                        issues.append(single_issue)
+            except Exception, e:
+                print "ERROR >> %s" % str(e)
+        self.lock.acquire()
+        self.current_json_issues = issues
+        self.lock.release()
+
+    def print_issues_flatbuf(self):
+        self.lock.acquire()
         if self.current_byte_buf is not None:
             issues = RedmineIssues.Issues.Issues.GetRootAsIssues(self.current_byte_buf, 0)
             for x in range(issues.IssuesLength()):
                 issue = issues.Issues(x)
                 print ">> Title: ", issue.Title(), "| Assignee: ", issue.Asignee(), "| Percent Done: ", issue.PercentDone()
+        self.lock.release()
+
+    def print_json_issues(self):
+        self.lock.acquire()
+        print json.dumps(self.current_json_issues)
+        self.lock.release()
 
     def send_issues(self):
         self.lock.acquire()
-        self.rmq.publish(self.current_byte_buf)
+        self.mqttw.publish(self.current_json_issues)
         self.lock.release()
 
 
-class RabbitMQWrapper:
+# class RabbitMQWrapper:
+#     def __init__(self):
+#         self.connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
+#         self.channel = self.connection.channel()
+#         self.channel.exchange_declare(exchange='dashboard.issues', exchange_type='topic')
+#         self.routing_key = "dashboard.issues.now"
+#
+#     def publish(self, _message):
+#         encoded_m = base64.b64encode(_message)
+#         self.channel.basic_publish(exchange='dashboard.issues', routing_key=self.routing_key, body=encoded_m)
+
+
+class MQTTWrapper:
     def __init__(self):
-        self.connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
-        self.channel = self.connection.channel()
-        self.channel.exchange_declare(exchange='dashboard.issues', exchange_type='topic')
-        self.routing_key = "dashboard.issues.now"
+        self.client = mqtt.Client()
+        self.client.connect("127.0.0.1", 1883, 60)
+        self.client.subscribe('dashboard.issues')
 
     def publish(self, _message):
-        encoded_m = base64.b64encode(_message)
-        self.channel.basic_publish(exchange='dashboard.issues', routing_key=self.routing_key, body=encoded_m)
+        # encoded_m = base64.b64encode(_message)
+        self.client.publish('dashboard.issues', json.dumps(_message), 0, False)
 
+    def disconnect(self):
+        self.client.disconnect()
 
 if __name__ == "__main__":
     parser = OptionParser()
@@ -101,47 +144,24 @@ if __name__ == "__main__":
     parser.add_option("-c", "--credentials", dest="credentials", help="redmine password/credentials")
 
     (options, args) = parser.parse_args()
-    
+
     ra = RedmineAdapter(options)
     ra.connect()
 
+    start_time = time.time()
+
     try:
-        import paho.mqtt.client as mqtt
-
-        # The callback for when the client receives a CONNACK response from the server.
-        def on_connect(client, userdata, flags, rc):
-            print("Connected with result code " + str(rc))
-
-            # Subscribing in on_connect() means that if we lose the connection and
-            # reconnect then subscriptions will be renewed.
-            # client.subscribe("$SYS/#")
-            client.subscribe('dashboard.issues')
-            client.publish('dashboard.issues', "something", 0, False)
-
-        # The callback for when a PUBLISH message is received from the server.
-        def on_message(client, userdata, msg):
-            print(msg.topic + " " + str(msg.payload))
-
-
-        client = mqtt.Client()
-        client.on_connect = on_connect
-        client.on_message = on_message
-
-        # client.connect('15.xx.xx.xx', 1883, 60)
-        # client.connect("iot.eclipse.org", 1883, 60)
-        client.connect("127.0.0.1", 1883, 60)
-
-        # client.publish('SEEDQ', 111, 0, False)
-
-        # Blocking call that processes network traffic, dispatches callbacks and
-        # handles reconnecting.
-        # Other loop*() functions are available that give a threaded interface and a
-        # manual interface.
-        client.loop_forever()
+        ra.mqttw.client.loop(0.1)
+        # Initial send
+        ra.json_builder_issues()
+        ra.print_json_issues()
+        ra.send_issues()
         while True:
-            # ra.serialize_issues()
-            # ra.print_issues()
-            # ra.send_issues()
-            time.sleep(30)
+            # Update every 20 seconds
+            ra.json_builder_issues()
+            ra.print_json_issues()
+            ra.send_issues()
+            time.sleep(20)
     except KeyboardInterrupt:
+        ra.mqttw.disconnect()
         print ">> CTRL+C exiting ..."
