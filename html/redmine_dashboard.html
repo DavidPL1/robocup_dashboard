@@ -328,9 +328,10 @@
             console.log(results)
             // Split timestamp and data into separate arrays
             var labels = [], data=[];
-            results["datasets"].forEach(function(packet) {
+            results["data"]["datasets"].forEach(function(packet) {
             labels.push(packet.label);
-            data.push(packet.data);
+            console.log(packet.label);
+            data.push(packet.data[0]);
             });
 
             // Create the chart.js data structure using 'labels' and 'data'
