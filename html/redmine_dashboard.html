@@ -342,6 +342,18 @@
         });
       });
       }
+
+      function up() {
+        window.scrollTo(0, 0);
+      }
+
+      function down() {
+        window.scrollTo(0, document.body.scrollHeight);
+        setTimeout(up, 30000);
+      }
+
+      setInterval(drawLineChart, 600000);
+      setInterval(down, 60000);
       drawLineChart();
     </script>
   </body>
