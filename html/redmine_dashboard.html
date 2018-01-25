@@ -313,6 +313,7 @@
            client.send(message); }, 15000);
     </script>
     <script>
+      Chart.defaults.global.elements.line.fill = false;
       function drawLineChart() {
         // Add a helper to format timestamp data
         Date.prototype.formatMMDDYYYY = function() {
