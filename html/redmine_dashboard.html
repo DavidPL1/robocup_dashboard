@@ -325,22 +325,18 @@
           url: 'https://raw.githubusercontent.com/warp1337/redmine_dashboard/master/html/data/data.json',
           dataType: 'json',
         }).done(function (results) {
+            console.log(results)
+            // Split timestamp and data into separate arrays
+            var labels = [], data=[];
+            results["datasets"].forEach(function(packet) {
+            labels.push(packet.label);
+            data.push(packet.data);
+            });
 
-        console.log(results)
-
-        // Split timestamp and data into separate arrays
-        var labels = [], data=[];
-        results["data"]["datasets"].forEach(function(dataset) {
-          labels.push(dataset.task);
-          console.log(labels);
-          console.log(dataset.points);
-          data.push(dataset.points);
-        });
-
-        // Create the chart.js data structure using 'labels' and 'data'
-        var tempData = {
-          labels : labels,
-          datasets : [{
+            // Create the chart.js data structure using 'labels' and 'data'
+            var tempData = {
+              labels : labels,
+              datasets : [{
               fillColor             : "rgba(151,187,205,0.2)",
               strokeColor           : "rgba(151,187,205,1)",
               pointColor            : "rgba(151,187,205,1)",
