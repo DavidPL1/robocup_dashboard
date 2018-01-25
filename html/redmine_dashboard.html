@@ -225,8 +225,8 @@
     </div>
     <div class='split-pane col-xs-12 col-sm-6 frontend-side'>
       <div>
-        <div class='text-content'>
-          <p>Time until RoboCup starts ...</p>
+        <div class='text-content' style="margin-top:-100px;">
+          <p style="font-size:3em;line-height:3.1em;">RoboCup Starts: </p>
           <div id="countdown"></div>
           <div class='big'></div>
         </div>
@@ -255,14 +255,13 @@
         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        // Display the result in the element with id="demo"
-        document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
-        + minutes + "m " + seconds + "s ";
+        document.getElementById("countdown").innerHTML = "<p style='font-size:3em;'>" + days + "d " + hours + "h "
+        + minutes + "m " + seconds + "s " + "</p>";
 
         // If the count down is finished, write some text
         if (distance < 0) {
           clearInterval(x);
-          document.getElementById("countdown").innerHTML = "EXPIRED";
+          document.getElementById("countdown").innerHTML = "TODAY!";
         }
         }, 1000);
     </script>
@@ -281,7 +280,7 @@
             var target = $("#info");
             jobj = JSON.parse(message.payloadString);
             for (i = 0; i < jobj.length; i++) {
-              target.append("<p class='styled'>"+ jobj[i]['subject'] + " | " + jobj[i]['assignee'] + "</p>" + "<p class='styled'><meter min='0' max='100' low='25' high='75' optimum='100' value='10'></meter></p>".replace("value='10'", "value="+jobj[i]['done']));
+              target.append("<p class='styled'>"+ jobj[i]['subject'] + "</p>" + "<p class='styled'><meter min='0' max='100' low='25' high='75' optimum='100' value='10'></meter></p>".replace("value='10'", "value="+jobj[i]['done']));
             }
             message = new Paho.MQTT.Message("pong");
             message.destinationName = "/pong";
