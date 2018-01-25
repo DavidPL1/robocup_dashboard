@@ -12,12 +12,7 @@
     "datasets": [
       {
         "label": "Final",
-        "fillColor": "rgba(220,220,220,0.2)",
-        "strokeColor": "rgba(220,220,220,1)",
-        "pointColor": "rgba(220,220,220,1)",
-        "pointStrokeColor": "#fff",
-        "pointHighlightFill": "#fff",
-        "pointHighlightStroke": "rgba(220,220,220,1)",
+        "borderColor": "#3cba9f",
         "data": [
           0,
           0,
@@ -30,12 +25,7 @@
       },
       {
         "label": "Tour Guide",
-        "fillColor": "rgba(151,187,205,0.2)",
-        "strokeColor": "rgba(151,187,205,1)",
-        "pointColor": "rgba(151,187,205,1)",
-        "pointStrokeColor": "#fff",
-        "pointHighlightFill": "#fff",
-        "pointHighlightStroke": "rgba(151,187,205,1)",
+        "borderColor": "#8e5ea2",
         "data": [
           0,
           0,
@@ -48,12 +38,7 @@
       },
       {
         "label": "Restaurant",
-        "fillColor": "rgba(151,187,205,0.2)",
-        "strokeColor": "rgba(151,187,205,1)",
-        "pointColor": "rgba(151,187,205,1)",
-        "pointStrokeColor": "#fff",
-        "pointHighlightFill": "#fff",
-        "pointHighlightStroke": "rgba(151,187,205,1)",
+        "borderColor": "#e8c3b9",
         "data": [
           0,
           0,
@@ -66,12 +51,7 @@
       },
       {
         "label": "Open Challenge",
-        "fillColor": "rgba(151,187,205,0.2)",
-        "strokeColor": "rgba(151,187,205,1)",
-        "pointColor": "rgba(151,187,205,1)",
-        "pointStrokeColor": "#fff",
-        "pointHighlightFill": "#fff",
-        "pointHighlightStroke": "rgba(151,187,205,1)",
+        "borderColor": "#c45850",
         "data": [
           0,
           0,
@@ -84,12 +64,7 @@
       },
       {
         "label": "EEGPSR",
-        "fillColor": "rgba(151,187,5,0.2)",
-        "strokeColor": "rgba(151,187,205,1)",
-        "pointColor": "rgba(151,187,205,1)",
-        "pointStrokeColor": "#fff",
-        "pointHighlightFill": "#fff",
-        "pointHighlightStroke": "rgba(151,187,205,1)",
+        "borderColor": "#6fdcee",
         "data": [
           0,
           0,
@@ -102,12 +77,7 @@
       },
       {
         "label": "SAPR",
-        "fillColor": "rgba(151,187,205,0.2)",
-        "strokeColor": "rgba(151,187,205,1)",
-        "pointColor": "rgba(151,87,205,1)",
-        "pointStrokeColor": "#fff",
-        "pointHighlightFill": "#fff",
-        "pointHighlightStroke": "rgba(151,187,205,1)",
+        "borderColor": "#a234d6",
         "data": [
           0,
           0,
@@ -120,12 +90,7 @@
       },
       {
         "label": "Help Me Carry",
-        "fillColor": "rgba(151,187,205,0.2)",
-        "strokeColor": "rgba(151,187,205,1)",
-        "pointColor": "rgba(11,187,205,1)",
-        "pointStrokeColor": "#fff",
-        "pointHighlightFill": "#fff",
-        "pointHighlightStroke": "rgba(151,187,205,1)",
+        "borderColor": "#e9366a",
         "data": [
           0,
           0,
@@ -138,12 +103,7 @@
       },
       {
         "label": "GPSR",
-        "fillColor": "rgba(151,187,205,0.2)",
-        "strokeColor": "rgba(151,187,205,1)",
-        "pointColor": "rgba(151,18,205,1)",
-        "pointStrokeColor": "#fff",
-        "pointHighlightFill": "#fff",
-        "pointHighlightStroke": "rgba(151,187,205,1)",
+        "borderColor": "#201d1e",
         "data": [
           0,
           0,
@@ -169,12 +129,7 @@
       },
       {
         "label": "Inspection",
-        "fillColor": "rgba(151,187,205,0.2)",
-        "strokeColor": "rgba(151,187,205,1)",
-        "pointColor": "rgba(15,187,205,1)",
-        "pointStrokeColor": "#fff",
-        "pointHighlightFill": "#fff",
-        "pointHighlightStroke": "rgba(151,187,205,1)",
+        "borderColor": "#349d37",
         "data": [
           0,
           10,
