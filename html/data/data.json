@@ -19,13 +19,13 @@
         "pointHighlightFill": "#fff",
         "pointHighlightStroke": "rgba(220,220,220,1)",
         "data": [
-          65,
-          59,
-          80,
-          81,
-          56,
-          55,
-          40
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
         ]
       },
       {
@@ -37,13 +37,13 @@
         "pointHighlightFill": "#fff",
         "pointHighlightStroke": "rgba(151,187,205,1)",
         "data": [
-          28,
-          48,
-          40,
-          19,
-          86,
-          27,
-          90
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
         ]
       },
       {
@@ -55,13 +55,13 @@
         "pointHighlightFill": "#fff",
         "pointHighlightStroke": "rgba(151,187,205,1)",
         "data": [
-          28,
-          48,
-          40,
-          19,
-          86,
-          27,
-          90
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
         ]
       },
       {
@@ -73,121 +73,121 @@
         "pointHighlightFill": "#fff",
         "pointHighlightStroke": "rgba(151,187,205,1)",
         "data": [
-          28,
-          48,
-          40,
-          19,
-          86,
-          27,
-          90
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
         ]
       },
       {
         "label": "EEGPSR",
-        "fillColor": "rgba(151,187,205,0.2)",
+        "fillColor": "rgba(151,187,5,0.2)",
         "strokeColor": "rgba(151,187,205,1)",
         "pointColor": "rgba(151,187,205,1)",
         "pointStrokeColor": "#fff",
         "pointHighlightFill": "#fff",
         "pointHighlightStroke": "rgba(151,187,205,1)",
         "data": [
-          28,
-          48,
-          40,
-          19,
-          86,
-          27,
-          90
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
         ]
       },
       {
         "label": "SAPR",
         "fillColor": "rgba(151,187,205,0.2)",
         "strokeColor": "rgba(151,187,205,1)",
-        "pointColor": "rgba(151,187,205,1)",
+        "pointColor": "rgba(151,87,205,1)",
         "pointStrokeColor": "#fff",
         "pointHighlightFill": "#fff",
         "pointHighlightStroke": "rgba(151,187,205,1)",
         "data": [
-          28,
-          48,
-          40,
-          19,
-          86,
-          27,
-          90
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
         ]
       },
       {
         "label": "Help Me Carry",
         "fillColor": "rgba(151,187,205,0.2)",
         "strokeColor": "rgba(151,187,205,1)",
-        "pointColor": "rgba(151,187,205,1)",
+        "pointColor": "rgba(11,187,205,1)",
         "pointStrokeColor": "#fff",
         "pointHighlightFill": "#fff",
         "pointHighlightStroke": "rgba(151,187,205,1)",
         "data": [
-          28,
-          48,
-          40,
-          19,
-          86,
-          27,
-          90
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
         ]
       },
       {
         "label": "GPSR",
         "fillColor": "rgba(151,187,205,0.2)",
         "strokeColor": "rgba(151,187,205,1)",
-        "pointColor": "rgba(151,187,205,1)",
+        "pointColor": "rgba(151,18,205,1)",
         "pointStrokeColor": "#fff",
         "pointHighlightFill": "#fff",
         "pointHighlightStroke": "rgba(151,187,205,1)",
         "data": [
-          28,
-          48,
-          40,
-          19,
-          86,
-          27,
-          90
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
         ]
       },
       {
         "label": "Cocktailparty",
         "fillColor": "rgba(151,187,205,0.2)",
-        "strokeColor": "rgba(151,187,205,1)",
+        "strokeColor": "rgba(1,187,205,1)",
         "pointColor": "rgba(151,187,205,1)",
         "pointStrokeColor": "#fff",
         "pointHighlightFill": "#fff",
         "pointHighlightStroke": "rgba(151,187,205,1)",
         "data": [
-          28,
-          48,
-          40,
-          19,
-          86,
-          27,
-          90
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
         ]
       },
       {
         "label": "Inspection",
         "fillColor": "rgba(151,187,205,0.2)",
         "strokeColor": "rgba(151,187,205,1)",
-        "pointColor": "rgba(151,187,205,1)",
+        "pointColor": "rgba(15,187,205,1)",
         "pointStrokeColor": "#fff",
         "pointHighlightFill": "#fff",
         "pointHighlightStroke": "rgba(151,187,205,1)",
         "data": [
-          28,
-          48,
+          0,
+          10,
+          15,
+          25,
           40,
-          19,
-          86,
-          27,
-          90
+          70,
+          95
         ]
       }
     ]
