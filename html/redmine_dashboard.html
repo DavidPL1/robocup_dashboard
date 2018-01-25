@@ -330,11 +330,11 @@
 
         // Split timestamp and data into separate arrays
         var labels = [], data=[];
-        results["datasets"].forEach(function(dataset) {
+        results["data.datasets"].forEach(function(dataset) {
           labels.push(dataset.task);
           console.log(labels);
           console.log(dataset.data);
-          data.push(dataset.data[0]);
+          data.push(dataset.points);
         });
 
         // Create the chart.js data structure using 'labels' and 'data'
