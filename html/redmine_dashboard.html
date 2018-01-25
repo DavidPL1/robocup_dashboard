@@ -7,211 +7,211 @@
   <script src="js/mqttws31.js" type="text/javascript"></script>
   <script src="js/chart.js"></script>
   <style>
-    @media (min-width: 500px) {
-      .col-sm-6 {
-        width: 50%;
+      @media (min-width: 500px) {
+        .col-sm-6 {
+          width: 50%;
+        }
       }
-    }
-    html, body {
-      height: 100%;
-      min-height: 18em;
-    }
-
-    .frontend-side {
-      background-image: url("img/code.png");
-    }
-
-    .uiux-side {
-      background-image: url("img/website-post-its.png");
-    }
-
-    .split-pane {
-      padding-top: 1em;
-      background-size: cover;
-      background-repeat: no-repeat;
-      background-position: center center;
-      height: 50%;
-      min-height: 9em;
-      font-size: 2em;
-      color: white;
-      font-family: Sans-Serif;
-    }
-    @media(min-width: 500px) {
-      .split-pane {
-        padding-top: 2em;
+      html, body {
         height: 100%;
+        min-height: 18em;
       }
-    }
-    .split-pane > div {
-      position: relative;
-      top: 50%;
-      -webkit-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-      transform: translateY(-50%);
-      text-align: center;
-    }
-    .split-pane > div .text-content {
-      line-height: 1.0em;
-      margin-bottom: 0.7em;
-    }
-    .split-pane > div .text-content .big {
-      font-size: 2em;
-    }
-    .split-pane > div img {
-      height: 1.3em;
-    }
-    @media (max-width: 500px) {
-      .split-pane > div img {
-        display:none;
-      }
-    }
-    .split-pane button, .split-pane a.button {
-      font-family: Sans-Serif;
-      background: none;
-      border: 1px solid white;
-      -moz-border-radius: 5px;
-      -webkit-border-radius: 5px;
-      border-radius: 5px;
-      width: 15em;
-      padding: 0.7em;
-      font-size: 0.5em;
-      -moz-transition: all 0.2s ease-out;
-      -o-transition: all 0.2s ease-out;
-      -webkit-transition: all 0.2s ease-out;
-      transition: all 0.2s ease-out;
-      text-decoration: none;
-      color: white;
-      display: inline-block;
-        cursor: pointer;
-    }
-    .split-pane button:hover, .split-pane a.button:hover {
-      text-decoration: none;
-      background-color: white;
-      border-color: white;
-        cursor: pointer;
-    }
-    .uiux-side.split-pane button:hover, .split-pane a.button:hover {
-      color: violet;
-    }
-    .frontend-side.split-pane button:hover, .split-pane a.button:hover {
-      color: blue;
-    }
 
-    #split-pane-or {
-      font-size: 2em;
-      color: white;
-      font-family: Sans-Serif;
-      text-align: center;
-      width: 100%;
-      position: absolute;
-      top: 50%;
-      -webkit-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-      transform: translateY(-50%);
-    }
-    @media (max-width: 925px) {
-      #split-pane-or {
-        top:15%;
+      .frontend-side {
+        background-image: url("img/code.png");
       }
-    }
-    #split-pane-or > div img {
-      height: 2.5em;
-    }
-    @media (max-width: 500px) {
+
+      .uiux-side {
+        background-image: url("img/website-post-its.png");
+      }
+
+      .split-pane {
+        padding-top: 1em;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        height: 50%;
+        min-height: 9em;
+        font-size: 2em;
+        color: white;
+        font-family: Sans-Serif;
+      }
+      @media(min-width: 500px) {
+        .split-pane {
+          padding-top: 2em;
+          height: 100%;
+        }
+      }
+      .split-pane > div {
+        position: relative;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+        text-align: center;
+      }
+      .split-pane > div .text-content {
+        line-height: 1.0em;
+        margin-bottom: 0.7em;
+      }
+      .split-pane > div .text-content .big {
+        font-size: 2em;
+      }
+      .split-pane > div img {
+        height: 1.3em;
+      }
+      @media (max-width: 500px) {
+        .split-pane > div img {
+          display:none;
+        }
+      }
+      .split-pane button, .split-pane a.button {
+        font-family: Sans-Serif;
+        background: none;
+        border: 1px solid white;
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border-radius: 5px;
+        width: 15em;
+        padding: 0.7em;
+        font-size: 0.5em;
+        -moz-transition: all 0.2s ease-out;
+        -o-transition: all 0.2s ease-out;
+        -webkit-transition: all 0.2s ease-out;
+        transition: all 0.2s ease-out;
+        text-decoration: none;
+        color: white;
+        display: inline-block;
+          cursor: pointer;
+      }
+      .split-pane button:hover, .split-pane a.button:hover {
+        text-decoration: none;
+        background-color: white;
+        border-color: white;
+          cursor: pointer;
+      }
+      .uiux-side.split-pane button:hover, .split-pane a.button:hover {
+        color: violet;
+      }
+      .frontend-side.split-pane button:hover, .split-pane a.button:hover {
+        color: blue;
+      }
+
       #split-pane-or {
+        font-size: 2em;
+        color: white;
+        font-family: Sans-Serif;
+        text-align: center;
+        width: 100%;
         position: absolute;
-        top: 50px;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+      }
+      @media (max-width: 925px) {
+        #split-pane-or {
+          top:15%;
+        }
       }
       #split-pane-or > div img {
-        height:2em;
+        height: 2.5em;
       }
-    }
-    @media(min-width: 500px) {
-      #split-pane-or {
-        font-size: 3em;
+      @media (max-width: 500px) {
+        #split-pane-or {
+          position: absolute;
+          top: 50px;
+        }
+        #split-pane-or > div img {
+          height:2em;
+        }
       }
-    }
-    .big {
-      font-size: 2em;
-    }
+      @media(min-width: 500px) {
+        #split-pane-or {
+          font-size: 3em;
+        }
+      }
+      .big {
+        font-size: 2em;
+      }
 
-    #slogan {
-      position: absolute;
-      width: 100%;
-      z-index: 100;
-      text-align: center;
-      vertical-align: baseline;
-      top: 0.5em;
-      color: white;
-      font-family: Sans-Serif;
-      font-size: 1.4em;
-    }
-    @media(min-width: 500px) {
       #slogan {
-        top: 5%;
-        font-size: 1.8em;
+        position: absolute;
+        width: 100%;
+        z-index: 100;
+        text-align: center;
+        vertical-align: baseline;
+        top: 0.5em;
+        color: white;
+        font-family: Sans-Serif;
+        font-size: 1.4em;
       }
+      @media(min-width: 500px) {
+        #slogan {
+          top: 5%;
+          font-size: 1.8em;
+        }
+      }
+      #slogan img {
+        height: 0.7em;
+      }
+
+     .styled {
+       font-size: 14px;
+       font-weight: bold;
+     }
+
+     .styled meter {
+     /* Reset the default appearance */
+     -webkit-appearance: none;
+     -moz-appearance: none;
+     appearance: none;
+     width: 50%;
+     height: 20px;
+
+    /* WebKit */
+    .styled meter::-webkit-meter-bar {
+      background: #EEE;
+      box-shadow: 0 2px 3px rgba(0,0,0,0.2) inset;
+      border-radius: 3px;
     }
-    #slogan img {
-      height: 0.7em;
+
+    .styled meter::-webkit-meter-optimum-value,
+    .styled meter::-webkit-meter-suboptimum-value,
+    .styled meter::-webkit-meter-even-less-good-value {
+      border-radius: 3px;
     }
 
-   .styled {
-     font-size: 14px;
-     font-weight: bold;
-   }
+    .styled meter::-webkit-meter-optimum-value {
+      background: #86CC00;
+    }
 
-   .styled meter {
-   /* Reset the default appearance */
-   -webkit-appearance: none;
-   -moz-appearance: none;
-   appearance: none;
-   width: 50%;
-   height: 20px;
+    .styled meter::-webkit-meter-suboptimum-value {
+      background: #FFDB1A;
+    }
 
-  /* WebKit */
-  .styled meter::-webkit-meter-bar {
-    background: #EEE;
-    box-shadow: 0 2px 3px rgba(0,0,0,0.2) inset;
-    border-radius: 3px;
+    .styled meter::-webkit-meter-even-less-good-value  {
+      background: #CC4600;
+    }
+
+
+    /* Firefox */
+    .styled meter::-moz-meter-bar {
+      border-radius: 3px;
+    }
+
+    .styled meter:-moz-meter-optimum::-moz-meter-bar {
+      background: #86CC00;
+    }
+
+    .styled meter:-moz-meter-sub-optimum::-moz-meter-bar {
+      background: #FFDB1A;
+    }
+
+    .styled meter:-moz-meter-sub-sub-optimum::-moz-meter-bar {
+      background: #CC4600;
+    }
   }
-
-  .styled meter::-webkit-meter-optimum-value,
-  .styled meter::-webkit-meter-suboptimum-value,
-  .styled meter::-webkit-meter-even-less-good-value {
-    border-radius: 3px;
-  }
-
-  .styled meter::-webkit-meter-optimum-value {
-    background: #86CC00;
-  }
-
-  .styled meter::-webkit-meter-suboptimum-value {
-    background: #FFDB1A;
-  }
-
-  .styled meter::-webkit-meter-even-less-good-value  {
-    background: #CC4600;
-  }
-
-
-  /* Firefox */
-  .styled meter::-moz-meter-bar {
-    border-radius: 3px;
-  }
-
-  .styled meter:-moz-meter-optimum::-moz-meter-bar {
-    background: #86CC00;
-  }
-
-  .styled meter:-moz-meter-sub-optimum::-moz-meter-bar {
-    background: #FFDB1A;
-  }
-
-  .styled meter:-moz-meter-sub-sub-optimum::-moz-meter-bar {
-    background: #CC4600;
-  }
-}
   </style>
   <link href="css/bootstrap.min.css" rel="stylesheet" />
   </head>
@@ -239,78 +239,78 @@
       </div>
     </div>
     <script>
-        // Set the date we're counting down to
-        // World
-        // var countDownDate = new Date("June 17, 2018 8:00:00").getTime();
-        // German Open
-        var countDownDate = new Date("April 27, 2018 8:00:00").getTime();
+      // Set the date we're counting down to
+      // World
+      // var countDownDate = new Date("June 17, 2018 8:00:00").getTime();
+      // German Open
+      var countDownDate = new Date("April 27, 2018 8:00:00").getTime();
 
-        // Update the count down every 1 second
-        var x = setInterval(function() {
+      // Update the count down every 1 second
+      var x = setInterval(function() {
 
-        // Get todays date and time
-        var now = new Date().getTime();
+      // Get todays date and time
+      var now = new Date().getTime();
 
-        // Find the distance between now an the count down date
-        var distance = countDownDate - now;
+      // Find the distance between now an the count down date
+      var distance = countDownDate - now;
 
-        // Time calculations for days, hours, minutes and seconds
-        var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      // Time calculations for days, hours, minutes and seconds
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        document.getElementById("countdown").innerHTML = "<p style='font-size:3em;'>" + days + "d " + hours + "h "
-        + minutes + "m " + seconds + "s " + "</p>";
+      document.getElementById("countdown").innerHTML = "<p style='font-size:3em;'>" + days + "d " + hours + "h "
+      + minutes + "m " + seconds + "s " + "</p>";
 
-        // If the count down is finished, write some text
-        if (distance < 0) {
-          clearInterval(x);
-          document.getElementById("countdown").innerHTML = "TODAY!";
-        }
-        }, 1000);
+      // If the count down is finished, write some text
+      if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("countdown").innerHTML = "TODAY!";
+      }
+      }, 1000);
     </script>
     <script>
-        var wsbroker = "127.0.0.1";  //mqtt websocket enabled broker
-        var wsport = 15675; // port for above
+      var wsbroker = "127.0.0.1";  //mqtt websocket enabled broker
+      var wsport = 15675; // port for above
 
-        var client = new Paho.MQTT.Client(wsbroker, wsport, "/ws", "redmine_dashboard");
+      var client = new Paho.MQTT.Client(wsbroker, wsport, "/ws", "redmine_dashboard");
 
-        client.onConnectionLost = function (responseObject) {
-            console.log("CONNECTION LOST - " + responseObject.errorMessage);
-        };
+      client.onConnectionLost = function (responseObject) {
+          console.log("CONNECTION LOST - " + responseObject.errorMessage);
+      };
 
-        client.onMessageArrived = function (message) {
-            document.getElementById('info').innerHTML = "";
-            var target = $("#info");
-            jobj = JSON.parse(message.payloadString);
-            for (i = 0; i < jobj.length; i++) {
-              target.append("<p class='styled'>"+ jobj[i]['subject'] + "</p>" + "<p class='styled'><meter min='0' max='100' low='25' high='75' optimum='100' value='10'></meter></p>".replace("value='10'", "value="+jobj[i]['done']));
-            }
-        };
+      client.onMessageArrived = function (message) {
+          document.getElementById('info').innerHTML = "";
+          var target = $("#info");
+          jobj = JSON.parse(message.payloadString);
+          for (i = 0; i < jobj.length; i++) {
+            target.append("<p class='styled'>"+ jobj[i]['subject'] + "</p>" + "<p class='styled'><meter min='0' max='100' low='25' high='75' optimum='100' value='10'></meter></p>".replace("value='10'", "value="+jobj[i]['done']));
+          }
+      };
 
-        var options = {
-            timeout: 3,
-            onSuccess: function () {
-                console.log("CONNECTION SUCCESS");
-                client.subscribe('dashboard.issues', {qos: 1});
-            },
-            onFailure: function (message) {
-                console.log("CONNECTION FAILURE - " + message.errorMessage);
-            }
-        };
+      var options = {
+          timeout: 3,
+          onSuccess: function () {
+              console.log("CONNECTION SUCCESS");
+              client.subscribe('dashboard.issues', {qos: 1});
+          },
+          onFailure: function (message) {
+              console.log("CONNECTION FAILURE - " + message.errorMessage);
+          }
+      };
 
-        if (location.protocol == "https:") {
-            options.useSSL = true;
-        }
+      if (location.protocol == "https:") {
+          options.useSSL = true;
+      }
 
-        console.log("CONNECT TO " + wsbroker + ":" + wsport);
-        client.connect(options);
+      console.log("CONNECT TO " + wsbroker + ":" + wsport);
+      client.connect(options);
 
-        setInterval(function(){
-             message = new Paho.MQTT.Message("pong");
-             message.destinationName = "/pong";
-             client.send(message); }, 15000);
+      setInterval(function(){
+           message = new Paho.MQTT.Message("pong");
+           message.destinationName = "/pong";
+           client.send(message); }, 15000);
     </script>
     <script>
       function drawLineChart() {
@@ -326,36 +326,36 @@
           dataType: 'json',
         }).done(function (results) {
 
-          // Split timestamp and data into separate arrays
-          var labels = [], data=[];
-          results["packets"].forEach(function(packet) {
-            labels.push(new Date(packet.timestamp).formatMMDDYYYY());
-            data.push(parseFloat(packet.payloadString));
-          });
-
-          // Create the chart.js data structure using 'labels' and 'data'
-          var tempData = {
-            labels : labels,
-            datasets : [{
-                fillColor             : "rgba(151,187,205,0.2)",
-                strokeColor           : "rgba(151,187,205,1)",
-                pointColor            : "rgba(151,187,205,1)",
-                pointStrokeColor      : "#fff",
-                pointHighlightFill    : "#fff",
-                pointHighlightStroke  : "rgba(151,187,205,1)",
-                data                  : data
-            }]
-          };
-
-          // Get the context of the canvas element we want to select
-          var ctx = document.getElementById("chart").getContext("2d");
-
-          // Instantiate a new chart
-          var myNewChart = new Chart(ctx,{
-            type: "line",
-            data: tempData,
-          });
+        // Split timestamp and data into separate arrays
+        var labels = [], data=[];
+        results["packets"].forEach(function(packet) {
+          labels.push(new Date(packet.timestamp).formatMMDDYYYY());
+          data.push(parseFloat(packet.payloadString));
         });
+
+        // Create the chart.js data structure using 'labels' and 'data'
+        var tempData = {
+          labels : labels,
+          datasets : [{
+              fillColor             : "rgba(151,187,205,0.2)",
+              strokeColor           : "rgba(151,187,205,1)",
+              pointColor            : "rgba(151,187,205,1)",
+              pointStrokeColor      : "#fff",
+              pointHighlightFill    : "#fff",
+              pointHighlightStroke  : "rgba(151,187,205,1)",
+              data                  : data
+          }]
+        };
+
+        // Get the context of the canvas element we want to select
+        var ctx = document.getElementById("chart").getContext("2d");
+
+        // Instantiate a new chart
+        var myNewChart = new Chart(ctx,{
+          type: "line",
+          data: tempData,
+        });
+      });
       }
       drawLineChart();
     </script>
