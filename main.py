@@ -164,7 +164,7 @@ if __name__ == "__main__":
             ra.json_builder_issues()
             # ra.print_json_issues()
             ra.send_issues()
-            time.sleep(30)
+            time.sleep(360)
     except KeyboardInterrupt:
         ra.mqttw.disconnect()
         print ">> CTRL+C exiting ..."

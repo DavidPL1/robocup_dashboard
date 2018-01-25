@@ -238,7 +238,10 @@
     </div>
     <script>
         // Set the date we're counting down to
-        var countDownDate = new Date("June 17, 2018 8:00:00").getTime();
+        // World
+        // var countDownDate = new Date("June 17, 2018 8:00:00").getTime();
+        // German Open
+        var countDownDate = new Date("April 27, 2018 8:00:00").getTime();
 
         // Update the count down every 1 second
         var x = setInterval(function() {
@@ -282,9 +285,6 @@
             for (i = 0; i < jobj.length; i++) {
               target.append("<p class='styled'>"+ jobj[i]['subject'] + "</p>" + "<p class='styled'><meter min='0' max='100' low='25' high='75' optimum='100' value='10'></meter></p>".replace("value='10'", "value="+jobj[i]['done']));
             }
-            message = new Paho.MQTT.Message("pong");
-            message.destinationName = "/pong";
-            client.send(message);
         };
 
         var options = {
@@ -304,6 +304,11 @@
 
         console.log("CONNECT TO " + wsbroker + ":" + wsport);
         client.connect(options);
+
+        setInterval(function(){
+             message = new Paho.MQTT.Message("pong");
+             message.destinationName = "/pong";
+             client.send(message); }, 15000);
     </script>
   </body>
 </html>
