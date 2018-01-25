@@ -344,11 +344,13 @@
       }
 
       function up() {
-        window.scrollTo(0, 0);
+        // window.scrollTo(0, 0);
+        $('html, body').animate({scrollTop: '0px'}, 800);
       }
 
       function down() {
-        window.scrollTo(0, document.body.scrollHeight);
+        $('html, body').animate({scrollTop: document.body.scrollHeight}, 800);
+        // window.scrollTo(0, document.body.scrollHeight);
         setTimeout(up, 30000);
       }
 
