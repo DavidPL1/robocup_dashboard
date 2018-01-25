@@ -330,10 +330,10 @@
 
         // Split timestamp and data into separate arrays
         var labels = [], data=[];
-        results["data.datasets"].forEach(function(dataset) {
+        results["data"].forEach(function(dataset) {
           labels.push(dataset.task);
           console.log(labels);
-          console.log(dataset.data);
+          console.log(dataset.points);
           data.push(dataset.points);
         });
 
