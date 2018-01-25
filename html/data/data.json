@@ -11,7 +11,7 @@
     ],
     "datasets": [
       {
-        "label": "My First dataset",
+        "label": "Final",
         "fillColor": "rgba(220,220,220,0.2)",
         "strokeColor": "rgba(220,220,220,1)",
         "pointColor": "rgba(220,220,220,1)",
@@ -29,7 +29,151 @@
         ]
       },
       {
-        "label": "My Second dataset",
+        "label": "Tour Guide",
+        "fillColor": "rgba(151,187,205,0.2)",
+        "strokeColor": "rgba(151,187,205,1)",
+        "pointColor": "rgba(151,187,205,1)",
+        "pointStrokeColor": "#fff",
+        "pointHighlightFill": "#fff",
+        "pointHighlightStroke": "rgba(151,187,205,1)",
+        "data": [
+          28,
+          48,
+          40,
+          19,
+          86,
+          27,
+          90
+        ]
+      },
+      {
+        "label": "Restaurant",
+        "fillColor": "rgba(151,187,205,0.2)",
+        "strokeColor": "rgba(151,187,205,1)",
+        "pointColor": "rgba(151,187,205,1)",
+        "pointStrokeColor": "#fff",
+        "pointHighlightFill": "#fff",
+        "pointHighlightStroke": "rgba(151,187,205,1)",
+        "data": [
+          28,
+          48,
+          40,
+          19,
+          86,
+          27,
+          90
+        ]
+      },
+      {
+        "label": "Open Challenge",
+        "fillColor": "rgba(151,187,205,0.2)",
+        "strokeColor": "rgba(151,187,205,1)",
+        "pointColor": "rgba(151,187,205,1)",
+        "pointStrokeColor": "#fff",
+        "pointHighlightFill": "#fff",
+        "pointHighlightStroke": "rgba(151,187,205,1)",
+        "data": [
+          28,
+          48,
+          40,
+          19,
+          86,
+          27,
+          90
+        ]
+      },
+      {
+        "label": "EEGPSR",
+        "fillColor": "rgba(151,187,205,0.2)",
+        "strokeColor": "rgba(151,187,205,1)",
+        "pointColor": "rgba(151,187,205,1)",
+        "pointStrokeColor": "#fff",
+        "pointHighlightFill": "#fff",
+        "pointHighlightStroke": "rgba(151,187,205,1)",
+        "data": [
+          28,
+          48,
+          40,
+          19,
+          86,
+          27,
+          90
+        ]
+      },
+      {
+        "label": "SAPR",
+        "fillColor": "rgba(151,187,205,0.2)",
+        "strokeColor": "rgba(151,187,205,1)",
+        "pointColor": "rgba(151,187,205,1)",
+        "pointStrokeColor": "#fff",
+        "pointHighlightFill": "#fff",
+        "pointHighlightStroke": "rgba(151,187,205,1)",
+        "data": [
+          28,
+          48,
+          40,
+          19,
+          86,
+          27,
+          90
+        ]
+      },
+      {
+        "label": "Help Me Carry",
+        "fillColor": "rgba(151,187,205,0.2)",
+        "strokeColor": "rgba(151,187,205,1)",
+        "pointColor": "rgba(151,187,205,1)",
+        "pointStrokeColor": "#fff",
+        "pointHighlightFill": "#fff",
+        "pointHighlightStroke": "rgba(151,187,205,1)",
+        "data": [
+          28,
+          48,
+          40,
+          19,
+          86,
+          27,
+          90
+        ]
+      },
+      {
+        "label": "GPSR",
+        "fillColor": "rgba(151,187,205,0.2)",
+        "strokeColor": "rgba(151,187,205,1)",
+        "pointColor": "rgba(151,187,205,1)",
+        "pointStrokeColor": "#fff",
+        "pointHighlightFill": "#fff",
+        "pointHighlightStroke": "rgba(151,187,205,1)",
+        "data": [
+          28,
+          48,
+          40,
+          19,
+          86,
+          27,
+          90
+        ]
+      },
+      {
+        "label": "Cocktailparty",
+        "fillColor": "rgba(151,187,205,0.2)",
+        "strokeColor": "rgba(151,187,205,1)",
+        "pointColor": "rgba(151,187,205,1)",
+        "pointStrokeColor": "#fff",
+        "pointHighlightFill": "#fff",
+        "pointHighlightStroke": "rgba(151,187,205,1)",
+        "data": [
+          28,
+          48,
+          40,
+          19,
+          86,
+          27,
+          90
+        ]
+      },
+      {
+        "label": "Inspection",
         "fillColor": "rgba(151,187,205,0.2)",
         "strokeColor": "rgba(151,187,205,1)",
         "pointColor": "rgba(151,187,205,1)",
