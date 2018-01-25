@@ -5,6 +5,7 @@
   <title>ROBOCUP DASHBOARD</title>
   <script src="js/jquery.min.js"></script>
   <script src="js/mqttws31.js" type="text/javascript"></script>
+  <script src="js/chart.js"></script>
   <style>
     @media (min-width: 500px) {
       .col-sm-6 {
@@ -229,6 +230,7 @@
           <p style="font-size:3em;line-height:3.1em;">RoboCup Starts: </p>
           <div id="countdown"></div>
           <div class='big'></div>
+          <canvas id="chart" width="740" height="200"></canvas>
         </div>
       </div>
     </div>
@@ -309,6 +311,53 @@
              message = new Paho.MQTT.Message("pong");
              message.destinationName = "/pong";
              client.send(message); }, 15000);
+    </script>
+    <script>
+      function drawLineChart() {
+        // Add a helper to format timestamp data
+        Date.prototype.formatMMDDYYYY = function() {
+            return (this.getMonth() + 1) +
+            "/" +  this.getDate() +
+            "/" +  this.getFullYear();
+        }
+
+        var jsonData = $.ajax({
+          url: 'http://d.microbuilder.io:8080/test/temp',
+          dataType: 'json',
+        }).done(function (results) {
+
+          // Split timestamp and data into separate arrays
+          var labels = [], data=[];
+          results["packets"].forEach(function(packet) {
+            labels.push(new Date(packet.timestamp).formatMMDDYYYY());
+            data.push(parseFloat(packet.payloadString));
+          });
+
+          // Create the chart.js data structure using 'labels' and 'data'
+          var tempData = {
+            labels : labels,
+            datasets : [{
+                fillColor             : "rgba(151,187,205,0.2)",
+                strokeColor           : "rgba(151,187,205,1)",
+                pointColor            : "rgba(151,187,205,1)",
+                pointStrokeColor      : "#fff",
+                pointHighlightFill    : "#fff",
+                pointHighlightStroke  : "rgba(151,187,205,1)",
+                data                  : data
+            }]
+          };
+
+          // Get the context of the canvas element we want to select
+          var ctx = document.getElementById("chart").getContext("2d");
+
+          // Instantiate a new chart
+          var myNewChart = new Chart(ctx,{
+            type: "line",
+            data: tempData,
+          });
+        });
+      }
+      drawLineChart();
     </script>
   </body>
 </html>
