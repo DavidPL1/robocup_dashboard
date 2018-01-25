@@ -230,7 +230,7 @@
           <p style="font-size:3em;line-height:3.1em;">RoboCup Starts: </p>
           <div id="countdown"></div>
           <div class='big'></div>
-          <canvas id="chart" width="740" height="200"></canvas>
+          <canvas id="chart" width="740" height="200" style="background: white;"></canvas>
         </div>
       </div>
     </div>
@@ -322,15 +322,19 @@
         }
 
         var jsonData = $.ajax({
-          url: 'https://www.dropbox.com/s/vk9383uwe2th88r/data.json?dl=0',
+          url: 'https://raw.githubusercontent.com/warp1337/redmine_dashboard/master/html/data/data.json',
           dataType: 'json',
         }).done(function (results) {
 
+        // console.log(results)
+
         // Split timestamp and data into separate arrays
         var labels = [], data=[];
-        results["packets"].forEach(function(packet) {
-          labels.push(new Date(packet.timestamp).formatMMDDYYYY());
-          data.push(parseFloat(packet.payloadString));
+        results["datasets"].forEach(function(dataset) {
+          labels.push(dataset.task);
+          console.log(labels);
+          console.log(dataset.data);
+          data.push(dataset.data[0]);
         });
 
         // Create the chart.js data structure using 'labels' and 'data'
