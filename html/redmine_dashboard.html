@@ -3,7 +3,7 @@
   <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
   <title>ROBOCUP DASHBOARD</title>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+  <script src="js/jquery.min.js"></script>
   <script src="js/mqttws31.js" type="text/javascript"></script>
   <style>
     @media (min-width: 500px) {
@@ -17,11 +17,11 @@
     }
 
     .frontend-side {
-      background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/74452/website-code.png");
+      background-image: url("img/code.png");
     }
 
     .uiux-side {
-      background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/74452/website-post-its.png");
+      background-image: url("img/website-post-its.png");
     }
 
     .split-pane {
@@ -212,7 +212,7 @@
   }
 }
   </style>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
   </head>
   <body lang="en">
     <div class='split-pane col-xs-12 col-sm-6 uiux-side'>
@@ -225,7 +225,6 @@
     </div>
     <div class='split-pane col-xs-12 col-sm-6 frontend-side'>
       <div>
-        <!-- <img src='http://bit.ly/bcr-dev'> -->
         <div class='text-content'>
           <p>Time until RoboCup starts ...</p>
           <div id="countdown"></div>
@@ -235,7 +234,6 @@
     </div>
     <div id='split-pane-or'>
       <div>
-        <!-- <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/74452/bcr-white.png'> -->
       </div>
     </div>
     <script>
@@ -272,18 +270,10 @@
         var wsbroker = "127.0.0.1";  //mqtt websocket enabled broker
         var wsport = 15675; // port for above
 
-        var client = new Paho.MQTT.Client(wsbroker, wsport, "/ws",
-            "myclientid_" + parseInt(Math.random() * 100, 10));
+        var client = new Paho.MQTT.Client(wsbroker, wsport, "/ws", "redmine_dashboard");
 
         client.onConnectionLost = function (responseObject) {
             console.log("CONNECTION LOST - " + responseObject.errorMessage);
-        };
-
-        var edit_content = function (responseObject) {
-            for (i=0; jobj.length; i++) {
-                // $("#bars").append("<p>foo</p>");
-                console.log("blubb");
-            }
         };
 
         client.onMessageArrived = function (message) {
@@ -293,6 +283,9 @@
             for (i = 0; i < jobj.length; i++) {
               target.append("<p class='styled'>"+ jobj[i]['subject'] + " | " + jobj[i]['assignee'] + "</p>" + "<p class='styled'><meter min='0' max='100' low='25' high='75' optimum='100' value='10'></meter></p>".replace("value='10'", "value="+jobj[i]['done']));
             }
+            message = new Paho.MQTT.Message("pong");
+            message.destinationName = "/pong";
+            client.send(message);
         };
 
         var options = {

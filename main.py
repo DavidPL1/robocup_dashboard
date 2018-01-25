@@ -37,10 +37,18 @@ class RedmineAdapter:
     def connect(self):
         try:
             self.redmine_instance = Redmine(self.url, username=self.username, password=self.password)
-            self.project_instance = self.redmine_instance.project.get(self.project)
         except Exception, e:
             print "ERROR >> %s" % str(e)
             exit(1)
+
+    def refresh(self):
+        try:
+            self.lock.acquire()
+            self.project_instance = self.redmine_instance.project.get(self.project)
+            self.lock.release()
+        except Exception, e:
+            print "ERROR >> %s" % str(e)
+            self.lock.release()
 
     def serialize_issues(self, _filter="[task]"):
         issues_collection = []
@@ -74,6 +82,7 @@ class RedmineAdapter:
         self.lock.release()
 
     def json_builder_issues(self, _filter="[task]"):
+        self.refresh()
         issues = []
         for item in self.project_instance.issues:
             try:
@@ -151,17 +160,11 @@ if __name__ == "__main__":
     start_time = time.time()
 
     try:
-        ra.mqttw.client.loop(0.1)
-        # Initial send
-        ra.json_builder_issues()
-        ra.print_json_issues()
-        ra.send_issues()
         while True:
-            # Update every 20 seconds
             ra.json_builder_issues()
-            ra.print_json_issues()
+            # ra.print_json_issues()
             ra.send_issues()
-            time.sleep(20)
+            time.sleep(15)
     except KeyboardInterrupt:
         ra.mqttw.disconnect()
         print ">> CTRL+C exiting ..."
