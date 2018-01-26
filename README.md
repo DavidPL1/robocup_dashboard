@@ -59,3 +59,7 @@ python main.py -u $TARGETURL -p $PROJECT -l $LOGIN -c PASSWORD
 <pre>
 Open a web browser and load html/robocup_dashboard.html
 </pre>
+
+## Add Data
+
+Open the file _data.json_ located in html/data, edit and push changes.
