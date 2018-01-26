@@ -1,4 +1,4 @@
-# Sandbox for a transport enabled dashboard for Redmine
+# Sandbox for a transport enabled dashboard for RoboCup
 
 ## Installation
 
