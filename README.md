@@ -1,5 +1,10 @@
 # Sandbox for a transport enabled dashboard for Redmine
 
+## The looks
+
+<img src=""/>
+<img src=""/>
+
 ## Installation
 
 Tested on Ubuntu 16.04
