@@ -29,6 +29,7 @@
     </div>
     <div>
       <div>
+        <div class='big'><p style='padding-left:1em;font-size:3em;color:#0099ff;align=center;'>Current <b>Task Score</b></p></div>
         <canvas id="chart" width="100%" style="background: white;"></canvas>
       </div>
     </div>
@@ -108,33 +109,58 @@
     </script>
     <script>
       Chart.defaults.global.elements.line.fill = false;
-      function drawLineChart() {
-        // Add a helper to format timestamp data
-        Date.prototype.formatMMDDYYYY = function() {
-            return (this.getMonth() + 1) +
-            "/" +  this.getDate() +
-            "/" +  this.getFullYear();
-        }
 
+      // Get the context of the canvas element we want to select
+      var ctx = document.getElementById("chart").getContext("2d");
+
+      function drawLineChart() {
         var jsonData = $.ajax({
           url: 'https://raw.githubusercontent.com/warp1337/redmine_dashboard/master/html/data/data.json',
           dataType: 'json',
-        }).done(function (results) {
-            // Create the chart.js data structure using 'labels' and 'data'
-            var tempData = {
-              labels : results["data"]["labels"],
-              datasets : results["data"]["datasets"]
-        };
+          }).done(function (results) {
+              // Create the chart.js data structure using 'labels' and 'data'
+              var tempData = {
+                labels : results["data"]["labels"],
+                datasets : results["data"]["datasets"]
+          };
 
-        // Get the context of the canvas element we want to select
-        var ctx = document.getElementById("chart").getContext("2d");
+          var chartOptions = {
+              legend: {
+                display: true,
+                position: 'top'
+              },
+              scales: {
+                xAxes: [{
+                  gridLines: {
+                    display: false,
+                    color: "black"
+                  },
+                  scaleLabel: {
+                    display: true,
+                    labelString: "Timeline",
+                    fontColor: "black"
+                  }
+                }],
+                yAxes: [{
+                  gridLines: {
+                    color: "black",
+                  },
+                  scaleLabel: {
+                    display: true,
+                    labelString: "Achieved Points",
+                    fontColor: "black"
+                  }
+                }]
+              }
+          };
 
-        // Instantiate a new chart
-        var myNewChart = new Chart(ctx,{
-          type: "line",
-          data: tempData,
+          // Instantiate a new chart
+          var myNewChart = new Chart(ctx,{
+            type: "line",
+            data: tempData,
+            options: chartOptions
+          });
         });
-      });
       }
 
       function up() {
