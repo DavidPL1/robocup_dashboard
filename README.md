@@ -2,8 +2,9 @@
 
 ## The looks
 
-<img src=""/>
-<img src=""/>
+<img src="https://github.com/warp1337/robocup_dashboard/raw/master/screen_1.jpg"/>
+<br/>
+<img src="https://github.com/warp1337/robocup_dashboard/raw/master/screen_2.jpg"/>
 
 ## Installation
 
