@@ -32,6 +32,7 @@ sudo apt-get install rabbitmq-server
 Then:
 
 <pre>
+sudo pip install jenkinsapi 
 sudo pip install pika
 sudo pip install flatbuffers
 sudo pip install python-redmine
@@ -52,7 +53,8 @@ sudo rabbitmq-plugins enable rabbitmq_management rabbitmq_web_mqtt rabbitmq_mqtt
 sudo service rabbitmq-server stop
 sudo service rabbitmq-server start
 cd robocup_dashboard
-python main.py -u $TARGETURL -p $PROJECT -l $LOGIN -c PASSWORD
+python main.py -j $JENKINSURL -u $TARGETURL -p $PROJECT -l $LOGIN -c PASSWORD
+NOTE: Jenkins Url is _optional_
 </pre>
 
 

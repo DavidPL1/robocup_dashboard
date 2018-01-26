@@ -5,11 +5,14 @@ import time
 import pika
 import json
 import base64
+import urllib3
+import threading
 import flatbuffers
 from sys import exit
 from threading import Lock
 from redminelib import Redmine
 from optparse import OptionParser
+
 
 # FLATBUF
 import RedmineIssues.Issue
@@ -17,6 +20,12 @@ import RedmineIssues.Issues
 
 # MQTT
 import paho.mqtt.client as mqtt
+
+# Jenkins
+import jenkinsapi
+from jenkinsapi.jenkins import Jenkins
+
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 class RedmineAdapter:
@@ -33,6 +42,7 @@ class RedmineAdapter:
         self.current_json_issues = None
         # RabbitMQ
         self.mqttw = MQTTWrapper()
+        print ">> Redmine init done"
 
     def connect(self):
         try:
@@ -137,13 +147,61 @@ class MQTTWrapper:
         self.client = mqtt.Client()
         self.client.connect("127.0.0.1", 1883, 60)
         self.client.subscribe('dashboard.issues')
+        print ">> MQTT init done"
 
-    def publish(self, _message):
+    def publish(self, _message, topic='dashboard.issues'):
         # encoded_m = base64.b64encode(_message)
-        self.client.publish('dashboard.issues', json.dumps(_message), 0, False)
+        self.client.publish(topic, json.dumps(_message), 0, False)
+        print ">> Publishing on %s" % topic
 
     def disconnect(self):
         self.client.disconnect()
+
+
+class JenkinsWrapper(threading.Thread):
+    def __init__(self, _options):
+        threading.Thread.__init__(self)
+        self.jenkins_url = str(_options.jenkinsurl)
+        self.server = Jenkins(self.jenkins_url, ssl_verify=False)
+        self.job_info = {}
+        self.lock = Lock()
+        self.should_run = True
+        self.mqttw = MQTTWrapper()
+        print ">> Jenkins init done"
+
+    def run(self):
+        init_time = time.time()
+        initial_send = False
+        while self.should_run:
+            try:
+                if initial_send is False:
+                    self.lock.acquire()
+                    for job_name, job_instance in self.server.get_jobs():
+                        last_build_nr = job_instance.get_last_buildnumber()
+                        status = job_instance.get_build(last_build_nr).get_status()
+                        self.job_info[job_name] = {"lastbuild": last_build_nr, "status": status}
+                    self.lock.release()
+                    self.mqttw.publish(self.job_info, topic='dashboard.jobinfo')
+                    initial_send = True
+                if time.time() - init_time > 3600:
+                    self.lock.acquire()
+                    for job_name, job_instance in self.server.get_jobs():
+                        last_build_nr = job_instance.get_last_buildnumber()
+                        status = job_instance.get_build(last_build_nr).get_status()
+                        self.job_info[job_name] = {"lastbuild": last_build_nr, "status": status}
+                    self.lock.release()
+                    self.mqttw.publish(self.job_info, topic='dashboard.jobinfo')
+                    init_time = time.time()
+            except Exception, e:
+                self.lock.release()
+                print "ERROR >> %s" % str(e)
+            time.sleep(1)
+            if self.should_run is False:
+                return
+
+    def print_results(self):
+        print self.job_info
+
 
 if __name__ == "__main__":
     parser = OptionParser()
@@ -151,8 +209,18 @@ if __name__ == "__main__":
     parser.add_option("-p", "--project", dest="project", help="redmine project")
     parser.add_option("-l", "--login", dest="login", help="redmine user/login")
     parser.add_option("-c", "--credentials", dest="credentials", help="redmine password/credentials")
+    parser.add_option("-j", "--jenkinsurl", dest="jenkinsurl", help="jenkins url")
 
     (options, args) = parser.parse_args()
+
+    j = None
+
+    if options.jenkinsurl:
+        try:
+            j = JenkinsWrapper(options)
+            j.start()
+        except Exception, e:
+            print "ERROR >> %s" % str(e)
 
     ra = RedmineAdapter(options)
     ra.connect()
@@ -160,11 +228,14 @@ if __name__ == "__main__":
     start_time = time.time()
 
     try:
+        print ">> Entering __main__ loop"
         while True:
             ra.json_builder_issues()
-            # ra.print_json_issues()
             ra.send_issues()
             time.sleep(360)
+            print ">> Updating..."
     except KeyboardInterrupt:
         ra.mqttw.disconnect()
+        if j is not None:
+            j.should_run = False
         print ">> CTRL+C exiting ..."
