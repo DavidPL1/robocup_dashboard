@@ -37,6 +37,7 @@ sudo pip install pika
 sudo pip install flatbuffers
 sudo pip install python-redmine
 sudo pip install paho-mqtt
+sudo pip install pymongo
 </pre>
 
 Finally, clone this repo:
