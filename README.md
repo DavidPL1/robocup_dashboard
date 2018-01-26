@@ -41,7 +41,7 @@ sudo pip install paho-mqtt
 Finally, clone this repo:
 
 <pre>
-git clone https://github.com/warp1337/redmine_dashboard.git
+git clone https://github.com/warp1337/robocup_dashboard.git
 </pre>
 
 ## Usage
@@ -53,4 +53,9 @@ sudo service rabbitmq-server stop
 sudo service rabbitmq-server start
 cd redmine_dashboard
 python main.py -u $TARGETURL -p $PROJECT -l $LOGIN -c PASSWORD
+</pre>
+
+
+<pre>
+Open a web browser and load html/robocup_dashboard.html
 </pre>
