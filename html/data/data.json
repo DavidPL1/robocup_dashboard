@@ -1,25 +1,13 @@
 {
   "data": {
     "labels": [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July"
+      "WK 06"
     ],
     "datasets": [
       {
         "label": "Final",
         "borderColor": "#3cba9f",
         "data": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
           0
         ]
       },
@@ -27,12 +15,6 @@
         "label": "Tour Guide",
         "borderColor": "#8e5ea2",
         "data": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
           0
         ]
       },
@@ -40,12 +22,6 @@
         "label": "Restaurant",
         "borderColor": "#e8c3b9",
         "data": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
           0
         ]
       },
@@ -53,12 +29,6 @@
         "label": "Open Challenge",
         "borderColor": "#c45850",
         "data": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
           0
         ]
       },
@@ -66,12 +36,6 @@
         "label": "EEGPSR",
         "borderColor": "#6fdcee",
         "data": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
           0
         ]
       },
@@ -79,12 +43,6 @@
         "label": "SAPR",
         "borderColor": "#a234d6",
         "data": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
           0
         ]
       },
@@ -92,12 +50,6 @@
         "label": "Help Me Carry",
         "borderColor": "#e9366a",
         "data": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
           0
         ]
       },
@@ -105,12 +57,6 @@
         "label": "GPSR",
         "borderColor": "#201d1e",
         "data": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
           0
         ]
       },
@@ -118,12 +64,6 @@
         "label": "Cocktailparty",
         "borderColor": "#3e95cd",
         "data": [
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
           0
         ]
       },
@@ -131,13 +71,7 @@
         "label": "Inspection",
         "borderColor": "#349d37",
         "data": [
-          0,
-          10,
-          15,
-          25,
-          40,
-          70,
-          95
+	  40
         ]
       }
     ]
