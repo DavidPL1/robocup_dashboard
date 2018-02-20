@@ -2,13 +2,15 @@
   "data": {
     "labels": [
       "WK 06",
-      "WK 07"
+      "WK 07",
+      "WK 08"
     ],
     "datasets": [
       {
         "label": "Final",
         "borderColor": "#3cba9f",
         "data": [
+          0,
           0,
           0
         ]
@@ -18,6 +20,7 @@
         "borderColor": "#8e5ea2",
         "data": [
           0,
+          0,
           0
         ]
       },
@@ -25,6 +28,7 @@
         "label": "Restaurant",
         "borderColor": "#e8c3b9",
         "data": [
+          0,
           0,
           0
         ]
@@ -34,6 +38,7 @@
         "borderColor": "#c45850",
         "data": [
           0,
+          0,
           0
         ]
       },
@@ -41,6 +46,7 @@
         "label": "EEGPSR",
         "borderColor": "#6fdcee",
         "data": [
+          0,
           0,
           0
         ]
@@ -50,13 +56,15 @@
         "borderColor": "#a234d6",
         "data": [
           0,
-          0
+          0,
+          42.5
         ]
       },
       {
         "label": "Help Me Carry",
         "borderColor": "#e9366a",
         "data": [
+          0,
           0,
           0
         ]
@@ -66,6 +74,7 @@
         "borderColor": "#201d1e",
         "data": [
           0,
+          0,
           0
         ]
       },
@@ -73,6 +82,7 @@
         "label": "Cocktailparty",
         "borderColor": "#3e95cd",
         "data": [
+          0,
           0,
           0
         ]
@@ -82,7 +92,8 @@
         "borderColor": "#349d37",
         "data": [
 		  40,
-		  80
+		  80,
+		  50
         ]
       }
     ]
