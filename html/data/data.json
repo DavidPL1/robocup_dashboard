@@ -3,13 +3,15 @@
     "labels": [
       "WK 06",
       "WK 07",
-      "WK 08"
+      "WK 08",
+      "WK 09"
     ],
     "datasets": [
       {
         "label": "Final",
         "borderColor": "#3cba9f",
         "data": [
+          0,
           0,
           0,
           0
@@ -21,6 +23,7 @@
         "data": [
           0,
           0,
+          0,
           0
         ]
       },
@@ -28,6 +31,7 @@
         "label": "Restaurant",
         "borderColor": "#e8c3b9",
         "data": [
+          0,
           0,
           0,
           0
@@ -39,6 +43,7 @@
         "data": [
           0,
           0,
+          0,
           0
         ]
       },
@@ -46,6 +51,7 @@
         "label": "EEGPSR",
         "borderColor": "#6fdcee",
         "data": [
+          0,
           0,
           0,
           0
@@ -57,7 +63,8 @@
         "data": [
           0,
           0,
-          42.5
+          42.5,
+          0
         ]
       },
       {
@@ -66,13 +73,15 @@
         "data": [
           0,
           0,
-          0
+          0,
+          5
         ]
       },
       {
         "label": "GPSR",
         "borderColor": "#201d1e",
         "data": [
+          0,
           0,
           0,
           0
@@ -84,6 +93,7 @@
         "data": [
           0,
           0,
+          0,
           0
         ]
       },
@@ -93,7 +103,8 @@
         "data": [
 		  40,
 		  80,
-		  50
+		  50,
+          0
         ]
       }
     ]
