@@ -2,7 +2,9 @@
   "data": {
     "labels": [
       "WK 08",
-      "WK 09"
+      "WK 09",
+      "WK 10",
+      "WK 11"
     ],
     "datasets": [
       {
@@ -10,29 +12,17 @@
         "borderColor": "#3cba9f",
         "data": [
           0,
-          0
+          0,
+          0,
+          200
         ]
       },
       {
-        "label": "Help Me Carry",
+        "label": "Carry my Luggage",
         "borderColor": "#8e5ea2",
         "data": [
           0,
-          0
-        ]
-      },
-      {
-        "label": "Restaurant",
-        "borderColor": "#e8c3b9",
-        "data": [
-	  0,
-          0
-        ]
-      },
-      {
-        "label": "Farewell",
-        "borderColor": "#c45850",
-        "data": [
+          0,
           0,
           0
         ]
@@ -42,6 +32,8 @@
         "borderColor": "#6fdcee",
         "data": [
           0,
+          0,
+          0,
           0
         ]
       },
@@ -50,37 +42,7 @@
         "borderColor": "#a234d6",
         "data": [
           0,
-          0
-        ]
-      },
-      {
-        "label": "GPSR",
-        "borderColor": "#e9366a",
-        "data": [
           0,
-          0
-        ]
-      },
-      {
-        "label": "Cleanup",
-        "borderColor": "#201d1e",
-        "data": [
-          0,
-          0
-        ]
-      },
-      {
-        "label": "Hand me That",
-        "borderColor": "#3e95cd",
-        "data": [
-          0,
-          0
-        ]
-      },
-      {
-        "label": "Clean Table",
-        "borderColor": "#349d37",
-        "data": [
           0,
           0
         ]
