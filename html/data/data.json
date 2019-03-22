@@ -4,7 +4,8 @@
       "WK 08",
       "WK 09",
       "WK 10",
-      "WK 11"
+      "WK 11",
+      "WK 12"
     ],
     "datasets": [
       {
@@ -14,13 +15,15 @@
           0,
           0,
           0,
-          200
+          200,
+          0
         ]
       },
       {
         "label": "Carry my Luggage",
         "borderColor": "#8e5ea2",
         "data": [
+          0,
           0,
           0,
           0,
@@ -34,13 +37,15 @@
           0,
           0,
           0,
-          0
+          0,
+          100
         ]
       },
       {
         "label": "Storing Groceries",
         "borderColor": "#a234d6",
         "data": [
+          0,
           0,
           0,
           0,
